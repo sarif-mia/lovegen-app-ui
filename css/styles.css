@@ -1,0 +1,241 @@
+/* Reset + base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #0f0f0f; background: #e9edf0; }
+
+:root {
+  --bg-top: #eff3f5;
+  --bg-bottom: #dfe6ea;
+  --ink: #111;
+  --muted: #6b7280;
+  --glass: rgba(24, 24, 27, 0.78);
+  --heart: #d73b45;
+  --heart-glow: rgba(215, 59, 69, 0.35);
+  --radius: 18px;
+  --fab-center-tweak: 6px;
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #e9edf0; /* fallback */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Plain page variant (Categories) */
+.app--plain {
+  background: #ffffff !important;
+}
+
+/* Header */
+.app-header {
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #111;
+}
+.brand .lg-L { font-size: 20px; }
+.brand .lg-heart { color: #111; margin: 0 2px; transform: translateY(1px); }
+.brand .lg-ovegen { font-size: 20px; }
+
+.icon { appearance: none; border: 0; background: transparent; color: #111; padding: 6px; border-radius: 10px; }
+.icon:active { opacity: 0.7; }
+
+/* Stage / hero */
+.stage {
+  flex: 1;
+  display: grid;
+  place-items: end center;
+  padding-top: 56px; /* leave space for header */
+  padding-bottom: 94px; /* leave space for tabbar */
+  position: relative;
+}
+
+.hero-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Background slider layers */
+.bg,
+.bg-next {
+  position: absolute; /* keep inside .app stacking context */
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: opacity 1.2s ease;
+  will-change: opacity, background-image;
+  z-index: 0; /* behind content, above body */
+  pointer-events: none;
+}
+.bg { opacity: 1; }
+.bg-next { opacity: 0; }
+
+/* Ensure main UI stays above background layers */
+.stage { z-index: 1; }
+.badge-new { z-index: 15; }
+.tabbar { z-index: 20; }
+
+/* Pager on right */
+.pager {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 10px;
+  cursor: pointer;
+}
+.pager .dot {
+  width: 2px; height: 28px; border-radius: 999px;
+  background: #c8c5c5;
+}
+.pager .dot.active { background: #ffffff; }
+
+/* New badge */
+.badge-new {
+  position: fixed;
+  left: 16px;
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #0f0f0f;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Tab bar */
+.tabbar {
+  position: fixed;
+  left: 16px; right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  height: 50px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.tabbar .tab {
+  appearance: none; border: 0; background: transparent; color: #fff;
+  width: 30px;display: grid; place-items: center;
+}
+.tabbar .tab:active { opacity: 0.7; }
+.tabbar svg { display: block; }
+
+/* Logo tab */
+.logo-tab {
+  flex: 0 0 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #2a2a2a, #161616 65%);
+  border: 2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+.logo-tab .ring { position: absolute; inset: -3px; border-radius: 50%; box-shadow: 0 0 0 2px var(--heart-glow), 0 0 15px 12px var(--heart-glow); pointer-events: none; }
+.logo-tab .fab-icon { display:block; width:50px; height:50px; object-fit:cover; border-radius: 50%; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35)); }
+.logo-tab:active { opacity: 0.7; }
+
+
+/* Improve hit targets on small screens */
+@media (hover: hover) {
+  .tabbar .tab:hover { background: rgba(255,255,255,0.06); }
+  .icon:hover { background: rgba(17,17,17,0.06); }
+}
+
+/* Larger mobile widths */
+@media (min-width: 420px) {
+  .hero-img { max-width: 420px; }
+}
+
+/* Category page panel */
+.panel {
+  background: #fff;
+  color: var(--ink);
+  border-radius: 28px;
+  margin: 76px 12px 110px; /* space under header, and above tabbar */
+  padding: 16px 18px 24px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.cat-tabs {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 4px 2px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cat-tabs a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+}
+.cat-tabs a.active { border-bottom: 2px solid #111; padding-bottom: 6px; }
+
+.cat-list { list-style: none; margin: 16px 0 0; padding: 0; }
+.cat-list li {
+  padding: 10px 2px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Filters */
+.filters { margin-top: 12px; }
+.filter-section { margin: 18px 0 8px; }
+.filter-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #111; margin-bottom: 10px; }
+
+.checkbox { display: flex; align-items: center; gap: 10px; color: #111; }
+.checkbox input {
+  appearance: none;
+  width: 20px; height: 20px; border: 2px solid #111; border-radius: 4px;
+  display: grid; place-content: center; background: #fff;
+}
+.checkbox input:checked::after { content: ""; width: 10px; height: 10px; background: #111; border-radius: 2px; }
+
+.swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+.swatch { width: 22px; height: 22px; border-radius: 50%; background: var(--sw, #111); border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+.swatch:active { opacity: 0.8; }
+
+/* Swatch color classes */
+.swatch-green { --sw: #2FA74E; }
+.swatch-indigo { --sw: #3B5BDB; }
+.swatch-navy { --sw: #2D2E83; }
+.swatch-orange { --sw: #F59E0B; }
+.swatch-sky { --sw: #38BDF8; }
+.swatch-red { --sw: #EF4444; }
+.swatch-teal { --sw: #2DD4BF; }
+.swatch-black { --sw: #111827; }
+
+/* Invert filter for icons */
+.invert { filter: invert(1); }
