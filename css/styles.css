@@ -1,7 +1,7 @@
 /* Reset + base */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #0f0f0f; background: #93282c; }
+body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #0f0f0f; background: #e9edf0; }
 
 :root {
   --bg-top: #eff3f5;
@@ -9,7 +9,7 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
   --ink: #111;
   --muted: #6b7280;
   --glass: rgba(24, 24, 27, 0.78);
-  --heart: #d73b45;
+  --heart: #93282c;
   --heart-glow: rgba(215, 59, 69, 0.35);
   --radius: 18px;
   --fab-center-tweak: 6px;
@@ -19,14 +19,14 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: #e9edf0; /* fallback */
+  background: #93282c; /* fallback */
   position: relative;
   overflow: hidden;
 }
 
 /* Plain page variant (Categories) */
 .app--plain {
-  background: #93282c !important;
+  background: #ffffff !important;
 }
 
 /* Header */
