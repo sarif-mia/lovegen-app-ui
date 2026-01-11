@@ -26,7 +26,7 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 
 /* Plain page variant (Categories) */
 .app--plain {
-  background: #ffffff !important;
+  background: #93282c !important;
 }
 
 /* Header */
