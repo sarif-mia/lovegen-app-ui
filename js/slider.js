@@ -68,20 +68,115 @@ document.addEventListener('DOMContentLoaded', function () {
     else { resetTimer(); nextSlide(); }
   });
 
-  // Swipe/scroll
-  let startX = 0, startY = 0, tracking = false;
-  const SWIPE_THRESHOLD = 40;
+  // Touch/swipe events for mobile
+  let touchStartX = 0, touchStartY = 0, touchTracking = false;
+  const TOUCH_SWIPE_THRESHOLD = 40;
+  
   if (appEl) {
-    appEl.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; tracking = true; });
-    appEl.addEventListener('pointerup', (e) => {
-      if (!tracking) return; tracking = false;
-      const dx = e.clientX - startX; const dy = e.clientY - startY;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) { resetTimer(); if (dx < 0) nextSlide(); else prevSlide(); }
-      else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > SWIPE_THRESHOLD) { resetTimer(); if (dy < 0) nextSlide(); else prevSlide(); }
+    // Touch events for mobile swipe
+    appEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchTracking = true;
+    }, { passive: true });
+    
+    appEl.addEventListener('touchmove', (e) => {
+      if (!touchTracking) return;
+      const touchCurrentX = e.touches[0].clientX;
+      const touchCurrentY = e.touches[0].clientY;
+      const diffX = Math.abs(touchCurrentX - touchStartX);
+      const diffY = Math.abs(touchCurrentY - touchStartY);
+      
+      // Prevent vertical scrolling when horizontal swipe is detected
+      if (diffX > diffY && diffX > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+    
+    appEl.addEventListener('touchend', (e) => {
+      if (!touchTracking) return;
+      touchTracking = false;
+      
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      
+      // Check if swipe distance is significant enough
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > TOUCH_SWIPE_THRESHOLD) {
+        resetTimer();
+        if (dx < 0) {
+          // Swiped left - go to next slide
+          nextSlide();
+        } else {
+          // Swiped right - go to previous slide
+          prevSlide();
+        }
+      }
+    }, { passive: true });
+    
+    // Mouse drag support for desktop
+    appEl.addEventListener('mousedown', (e) => {
+      touchStartX = e.clientX;
+      touchStartY = e.clientY;
+      touchTracking = true;
     });
+    
+    appEl.addEventListener('mousemove', (e) => {
+      if (!touchTracking) return;
+      const diffX = Math.abs(e.clientX - touchStartX);
+      const diffY = Math.abs(e.clientY - touchStartY);
+      
+      // Prevent selection during drag
+      if (diffX > 10 || diffY > 10) {
+        window.getSelection().removeAllRanges();
+      }
+    });
+    
+    appEl.addEventListener('mouseup', (e) => {
+      if (!touchTracking) return;
+      touchTracking = false;
+      
+      const dx = e.clientX - touchStartX;
+      const dy = e.clientY - touchStartY;
+      
+      // Check if drag distance is significant enough
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > TOUCH_SWIPE_THRESHOLD) {
+        resetTimer();
+        if (dx < 0) {
+          // Dragged left - go to next slide
+          nextSlide();
+        } else {
+          // Dragged right - go to previous slide
+          prevSlide();
+        }
+      }
+    });
+    
+    // Pointer events (fallback)
+    appEl.addEventListener('pointerdown', (e) => {
+      touchStartX = e.clientX;
+      touchStartY = e.clientY;
+      touchTracking = true;
+    });
+    appEl.addEventListener('pointerup', (e) => {
+      if (!touchTracking) return;
+      touchTracking = false;
+      const dx = e.clientX - touchStartX;
+      const dy = e.clientY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > TOUCH_SWIPE_THRESHOLD) {
+        resetTimer();
+        if (dx < 0) nextSlide(); else prevSlide();
+      }
+    });
+    
+    // Wheel support
     let wheelLock = false;
     appEl.addEventListener('wheel', (e) => {
-      if (wheelLock) return; wheelLock = true; resetTimer();
+      if (wheelLock) return;
+      wheelLock = true;
+      resetTimer();
       if (e.deltaY > 0) nextSlide(); else prevSlide();
       setTimeout(() => wheelLock = false, 600);
     }, { passive: true });
