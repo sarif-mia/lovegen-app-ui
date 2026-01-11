@@ -181,7 +181,6 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 
 /* Category page panel */
 .panel {
-  background: #fff;
   color: var(--ink);
   border-radius: 28px;
   margin: 76px 12px 110px; /* space under header, and above tabbar */
@@ -401,6 +400,24 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
   border-radius: var(--radius);
   padding: 8px 12px;
   margin: 0 10px;
+  flex: 1;
+}
+
+.app-header {
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.app-header .search-container {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .search-input {

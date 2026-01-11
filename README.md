@@ -6,16 +6,17 @@ A mobile-first web application UI for LOVEGEN, featuring a home page with image 
 
 - Responsive mobile design
 - Image slider with swipe and click navigation
-- Category and filter pages
+- Category, filter, account, cart, and search pages
 - Clean, modern UI with glassmorphism effects
 
 ## Project Structure
 
 - `index.html` - Home page
-- `pages/` - Additional pages (categories, filters)
+- `pages/` - Additional pages (account, cart, categories, filters, search)
 - `css/` - Stylesheets
 - `js/` - JavaScript files
 - `Dockerfile` - Docker configuration
+- `netlify.toml` - Netlify deployment configuration
 
 ## Running Locally
 
