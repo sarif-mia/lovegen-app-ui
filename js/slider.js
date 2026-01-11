@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const slides = [
     { src: 'https://cdn.shopify.com/s/files/1/0837/4475/1921/files/DIP07395_443181f0-774e-4b17-a361-b2cc15dc9994.webp?v=1764613737', label: 'NEW' },
     { src: 'https://cdn.shopify.com/s/files/1/0837/4475/1921/files/lovegen-boxy-fit-premium-black-tee_8.webp?v=1763546270', label: 'WOMEN' },
-    { src: 'https://cdn.shopify.com/s/files/1/0837/4475/1921/files/DIP07393_2f2746bd-42ac-4b03-9a1d-e3f443d81a0a.webp?v=1759909680', label: 'MEN' }
+    { src: 'https://cdn.shopify.com/s/files/1/0837/4475/1921/files/DIP07393_2f2746bd-42ac-4b03-9a1d-e3f443d81a0a.webp?v=1759909680', label: 'MEN' },
+    { src: 'https://cdn.shopify.com/s/files/1/0837/4475/1921/files/DIP04243.webp?v=1756870673', label: 'ACCESORIES' }
   ];
 
   // Preload
