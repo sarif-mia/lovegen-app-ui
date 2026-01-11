@@ -181,7 +181,7 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 
 /* Category page panel */
 .panel {
-  color: var(--ink);
+  color: white;
   border-radius: 28px;
   margin: 76px 12px 110px; /* space under header, and above tabbar */
   padding: 16px 18px 24px;
@@ -197,10 +197,10 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 }
 .cat-tabs a {
   text-decoration: none;
-  color: #111;
+  color: white;
   font-weight: 600;
 }
-.cat-tabs a.active { border-bottom: 2px solid #111; padding-bottom: 6px; }
+.cat-tabs a.active { border-bottom: 2px solid white; padding-bottom: 6px; }
 
 .cat-list { list-style: none; margin: 16px 0 0; padding: 0; }
 .cat-list li {
@@ -212,15 +212,15 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 /* Filters */
 .filters { margin-top: 12px; }
 .filter-section { margin: 18px 0 8px; }
-.filter-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #111; margin-bottom: 10px; }
+.filter-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: white; margin-bottom: 10px; }
 
-.checkbox { display: flex; align-items: center; gap: 10px; color: #111; }
+.checkbox { display: flex; align-items: center; gap: 10px; color: white; }
 .checkbox input {
   appearance: none;
-  width: 20px; height: 20px; border: 2px solid #111; border-radius: 4px;
-  display: grid; place-content: center; background: #fff;
+  width: 20px; height: 20px; border: 2px solid white; border-radius: 4px;
+  display: grid; place-content: center; background: transparent;
 }
-.checkbox input:checked::after { content: ""; width: 10px; height: 10px; background: #111; border-radius: 2px; }
+.checkbox input:checked::after { content: ""; width: 10px; height: 10px; background: white; border-radius: 2px; }
 
 .swatches { display: flex; flex-wrap: wrap; gap: 12px; }
 .swatch { width: 22px; height: 22px; border-radius: 50%; background: var(--sw, #111); border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
