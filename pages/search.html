@@ -3,43 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>LOVEGEN — Mobile Home</title>
+  <title>LOVEGEN — Search</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
-  
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-  <div class="app">
-    <!-- Background slider layers -->
-    <div class="bg" aria-hidden="true"></div>
-    <div class="bg bg-next" aria-hidden="true"></div>
-
+  <div class="app app--plain">
     <!-- Header -->
     <header class="app-header">
-      <div class="brand" aria-label="LOVEGEN logo">
-        <span class="lg-ovegen">LOVEGEN</span>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search products..." aria-label="Search products">
+        <button class="search-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
       </div>
-      <button class="icon chevron" aria-label="Next">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </button>
     </header>
 
-    <!-- Main hero -->
-    <main class="stage" role="main">
-      <!-- Right pager indicator -->
-      <div class="pager" aria-hidden="true"></div>
-    </main>
-
-    <!-- Bottom left label -->
-    <div class="badge-new">NEW</div>
+    <!-- Search Results Panel -->
+    <section class="panel">
+      <div class="search-results">
+        <div class="search-suggestions">
+          <h3>Popular Searches</h3>
+          <div class="suggestions-list">
+            <button class="suggestion-btn">T-Shirts</button>
+            <button class="suggestion-btn">Jeans</button>
+            <button class="suggestion-btn">Jackets</button>
+            <button class="suggestion-btn">Dresses</button>
+            <button class="suggestion-btn">Shoes</button>
+            <button class="suggestion-btn">Accessories</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Bottom tab bar -->
     <nav class="tabbar" aria-label="Primary">
-      <a href="pages/filters.html" class="tab-link">
       <button class="tab" aria-label="Menu">
         <!-- grid -->
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -49,28 +52,22 @@
           <rect x="14" y="14" width="7" height="7" rx="1.5"/>
         </svg>
       </button>
-      </a>
-      <a href="pages/search.html" class="tab-link">
-      <button class="tab" aria-label="Search">
+      <button class="tab active" aria-label="Search">
         <!-- search -->
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="7"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
-      </a>
       <button class="tab logo-tab" aria-label="LOVEGEN">
         <span class="ring" aria-hidden="true"></span>
         <img class="fab-icon" alt="LOVEGEN icon" width="28" height="28"
              src="https://cdn.shopify.com/s/files/1/0837/4475/1921/files/fav-icon_e8d10352-e04d-466d-b6bf-a229702da831.png?v=1748765882" />
       </button>
-      <a href="pages/cart.html" class="tab-link">
       <button class="tab" aria-label="Cart">
         <!-- bag -->
         <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/shopping-bag--v1.png" alt="shopping-bag--v1" class="invert" />
       </button>
-      </a>
-      <a href="pages/account.html" class="tab-link">
       <button class="tab" aria-label="Profile">
         <!-- user -->
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -78,10 +75,35 @@
           <circle cx="12" cy="7" r="4"/>
         </svg>
       </button>
-      </a>
     </nav>
   </div>
 
-  <script src="js/slider.js" defer></script>
+  <script>
+    // Search functionality
+    document.querySelector('.search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    document.querySelector('.search-btn').addEventListener('click', performSearch);
+
+    function performSearch() {
+      const query = document.querySelector('.search-input').value.trim();
+      if (query) {
+        // In a real implementation, this would search for products
+        alert(`Searching for: ${query}`);
+      }
+    }
+
+    // Add event listeners to suggestion buttons
+    document.querySelectorAll('.suggestion-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const text = this.textContent;
+        document.querySelector('.search-input').value = text;
+        performSearch();
+      });
+    });
+  </script>
 </body>
 </html>
