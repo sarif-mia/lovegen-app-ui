@@ -1,0 +1,26 @@
+/* Filters */
+.filters { margin-top: 12px; }
+.filter-section { margin: 18px 0 8px; }
+.filter-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: white; margin-bottom: 10px; }
+
+.checkbox { display: flex; align-items: center; gap: 10px; color: white; }
+.checkbox input {
+  appearance: none;
+  width: 20px; height: 20px; border: 2px solid white; border-radius: 4px;
+  display: grid; place-content: center; background: transparent;
+}
+.checkbox input:checked::after { content: ""; width: 10px; height: 10px; background: white; border-radius: 2px; }
+
+.swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+.swatch { width: 22px; height: 22px; border-radius: 50%; background: var(--sw, #111); border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+.swatch:active { opacity: 0.8; }
+
+/* Swatch color classes */
+.swatch-green { --sw: #2FA74E; }
+.swatch-indigo { --sw: #3B5BDB; }
+.swatch-navy { --sw: #2D2E83; }
+.swatch-orange { --sw: #F59E0B; }
+.swatch-sky { --sw: #38BDF8; }
+.swatch-red { --sw: #EF4444; }
+.swatch-teal { --sw: #2DD4BF; }
+.swatch-black { --sw: #111827; }

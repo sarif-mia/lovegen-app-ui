@@ -1,0 +1,33 @@
+/* Reset + base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #0f0f0f; background: #93282c; }
+
+:root {
+  --bg-top: #eff3f5;
+  --bg-bottom: #dfe6ea;
+  --ink: #111;
+  --muted: #6b7280;
+  --glass: rgba(24, 24, 27, 0.78);
+  --heart: #93282c;
+  --heart-glow: rgba(215, 59, 69, 0.35);
+  --radius: 18px;
+  --fab-center-tweak: 6px;
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #93282c; /* fallback */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Plain page variant */
+.app--plain {
+  background: #93282c !important;
+}
+
+/* Utilities */
+.invert { filter: invert(1); }
