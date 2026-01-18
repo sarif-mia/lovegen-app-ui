@@ -98,7 +98,7 @@
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   height: 50px;
   border-radius: var(--radius);
-  background: var(--glass);
+  background: #3c3c3d;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
@@ -130,7 +130,50 @@
   place-items: center;
   color: #fff;
 }
-.logo-tab .ring { position: absolute; inset: -3px; border-radius: 50%; box-shadow: 0 0 0 2px var(--heart-glow), 0 0 15px 12px var(--heart-glow); pointer-events: none; }
+
+/* Glowing icon effect */
+.icon-glow {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ff7a1a; /* main orange */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* glow + shadow */
+  box-shadow:
+    0 0 8px rgba(255, 122, 26, 0.6),
+    0 0 18px rgba(255, 122, 26, 0.5),
+    0 0 32px rgba(255, 122, 26, 0.4),
+    0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* optional white icon inside */
+.icon-glow svg,
+.icon-glow i {
+  color: #ffffff;
+  font-size: 32px;
+}
+.logo-tab .ring { 
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; 
+  background: #ff7a1a; /* main orange */
+  /* glow + shadow */
+  box-shadow:
+    0 0 8px rgba(255, 122, 26, 0.6),
+    0 0 18px rgba(255, 122, 26, 0.5),
+    0 0 32px rgba(255, 122, 26, 0.4),
+    0 8px 18px rgba(0, 0, 0, 0.25);
+  pointer-events: none; 
+  z-index: -1; /* Send glow behind the logo tab */
+  border: none; /* Remove any border */
+}
 .logo-tab .fab-icon { display:block; width:50px; height:50px; object-fit:cover; border-radius: 50%; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35)); }
 .logo-tab:active { opacity: 0.7; }
 
