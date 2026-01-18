@@ -163,15 +163,16 @@
   border-radius: 50%;
 
   /* ring */
-  border: 4px solid #ffffff; /* white border */
+  border: 1.5px solid #ffffff; /* thin white border */
 
   /* glow + shadow */
   box-shadow:
-    0 0 6px rgba(255, 122, 26, 0.6), /* orange glow inside */
-    0 0 14px rgba(255, 122, 26, 0.5), /* orange glow inside */
-    0 6px 14px rgba(0, 0, 0, 0.25), /* shadow outside */
-    inset 0 0 6px rgba(255, 122, 26, 0.6), /* orange inner glow */
-    inset 0 0 14px rgba(255, 122, 26, 0.5); /* orange inner glow */
+    0 0 10px rgba(255, 122, 26, 0.7), /* stronger orange glow inside */
+    0 0 20px rgba(255, 122, 26, 0.6), /* stronger orange glow inside */
+    0 0 35px rgba(255, 122, 26, 0.5), /* stronger orange glow inside */
+    0 8px 20px rgba(0, 0, 0, 0.3), /* stronger shadow outside */
+    inset 0 0 10px rgba(255, 122, 26, 0.7), /* stronger orange inner glow */
+    inset 0 0 20px rgba(255, 122, 26, 0.6); /* stronger orange inner glow */
 
   background: transparent;
 }
@@ -185,14 +186,15 @@
   border-radius: 50%; 
   background: transparent;
   /* ring */
-  border: 4px solid #ffffff; /* white border */
+  border: 2px solid #ffffff; /* thin white border */
   /* glow + shadow */
   box-shadow:
-    0 0 6px rgba(255, 122, 26, 0.6), /* orange glow inside */
-    0 0 14px rgba(255, 122, 26, 0.5), /* orange glow inside */
-    0 6px 14px rgba(0, 0, 0, 0.25), /* shadow outside */
-    inset 0 0 6px rgba(255, 122, 26, 0.6), /* orange inner glow */
-    inset 0 0 14px rgba(255, 122, 26, 0.5); /* orange inner glow */
+    0 0 10px rgba(255, 122, 26, 0.7), /* stronger orange glow inside */
+    0 0 20px rgba(255, 122, 26, 0.6), /* stronger orange glow inside */
+    0 0 35px rgba(255, 122, 26, 0.5), /* stronger orange glow inside */
+    0 8px 20px rgba(0, 0, 0, 0.3), /* stronger shadow outside */
+    inset 0 0 10px rgba(255, 122, 26, 0.7), /* stronger orange inner glow */
+    inset 0 0 20px rgba(255, 122, 26, 0.6); /* stronger orange inner glow */
   pointer-events: none; 
   z-index: -1; /* Send glow behind the logo tab */
 }
