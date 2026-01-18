@@ -122,9 +122,8 @@
   flex: 0 0 62px;
   height: 62px;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 35%, #2a2a2a, #161616 65%);
+  background: transparent;
   border: 2px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
   position: relative;
   display: grid;
   place-items: center;
@@ -163,7 +162,7 @@
   border-radius: 50%;
 
   /* ring */
-  border: 1.5px solid #ffffff; /* thin white border */
+  border: 2px solid #ffffff;
 
   /* glow + shadow */
   box-shadow:
@@ -186,7 +185,7 @@
   border-radius: 50%; 
   background: transparent;
   /* ring */
-  border: 2px solid #ffffff; /* thin white border */
+  border: 2px solid #ffffff;
   /* glow + shadow */
   box-shadow:
     0 0 10px rgba(255, 122, 26, 0.7), /* stronger orange glow inside */
